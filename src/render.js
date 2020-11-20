@@ -13,7 +13,7 @@ const RenderWords = (word, definitions) => {
     descriptionContainer.appendChild(horizontalRule)
     
     // Iterate through each definition, creating dom element
-    definitions.forEach(def => {
+    definitions.forEach((def, index) => {
         // If for some reason there is no text associated with definition, skip iteration
         if(def.text == undefined) return
 
@@ -26,7 +26,9 @@ const RenderWords = (word, definitions) => {
 
         // Create container to house all information
         const infoContainer = document.createElement("div")
-        infoContainer.classList.add("definition-container")
+        infoContainer.classList.add("info-container")
+        // If not final info container, append line break after
+        if(index != definitions.length - 1) infoContainer.classList.add("center-break")
 
         // Create container to house part of speech
         const partOfSpeechContainer = document.createElement("div")

@@ -42,7 +42,7 @@ body, html {
 
         .header-icon {
             margin: 5px;
-            transition: 200ms ease-in-out;
+            transition: 100ms ease-in-out;
             cursor: pointer;
         }
 
@@ -72,7 +72,7 @@ body, html {
         width: 90%;
       }
 
-    .definition-container {
+    .info-container {
         margin: 5px 5px 0px 5px;
         padding: 5px 20px;
         position: relative;
@@ -87,7 +87,6 @@ body, html {
             font-size: 20px;
         }
 
-
     }
 
     .error-container {
@@ -97,8 +96,8 @@ body, html {
         font-weight: 500;
     }
 
-    // Break between each definition
-    .definition-container:after {
+    // Break between each info container, except last one
+    .info-container.center-break:after {
         @include center-break(30%)
     }
 }

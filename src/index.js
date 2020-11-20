@@ -12,13 +12,13 @@ const Wordnik = {
 }
 
 // Using concatenation because tabbed string literals are formed with a newline. 
-// Gets a random word.
+// Gets a random word json
 let randomWordURL = 
     `http://api.wordnik.com/v4/words.json/randomWord?` +
     `hasDictionaryDef=${Wordnik.hasDictionaryDef}&` +
     `api_key=${Wordnik.apiKey}`
 
-// Receives a word, and provides the definition
+
 const getWordDefinitionURL = (word) => {
     
     let wordDefinitionURL = 
@@ -33,6 +33,8 @@ const getWordDefinitionURL = (word) => {
     return wordDefinitionURL
 }
 
+
+// Gets word json from Wordnik servers
 const getWordJSON = async () => {
     const wordObject = await fetch(randomWordURL)
     const wordJson = await wordObject.json()
@@ -41,6 +43,7 @@ const getWordJSON = async () => {
     else return wordJson
 }
 
+// Gets definitions json from Wordnik servers
 const getDefinitionsJSON = async (wordJSON) => {
     const wordDefinition = await fetch(getWordDefinitionURL(wordJSON.word))
     const wordDefinitionJson = await wordDefinition.json()
@@ -49,15 +52,17 @@ const getDefinitionsJSON = async (wordJSON) => {
     else return wordDefinitionJson
 }
 
-
+// Takes word json and returns word
 const getWord = (wordJSON) => {
     let word = wordJSON.word
     return word
 }
 
+// Take definitions json array and outputs array of definitions
 const getDefinitions = (definitionJSON) => {
     let definitions = []
     
+    // Return all definitions or first 3 if larger than 3
     for(let i=0; i<3 && i < definitionJSON.length; i++) {
         definitions.push(definitionJSON[i])
     }
@@ -65,6 +70,7 @@ const getDefinitions = (definitionJSON) => {
     return definitions
 }
 
+// Main function which executes all above elements
 const main = async () => {
     try {
         let wordJSON = await getWordJSON()
@@ -78,12 +84,11 @@ const main = async () => {
     }
 }
 
-const wordContainer = document.querySelector (".word-container")
+// Event listener to clear content and refresh with new word when book symbol pressed
 const descriptionContainer = document.querySelector (".description-container")
 const refresh = document.querySelector(".header-icon")
 
 refresh.addEventListener("click", () => {
-    wordContainer.innerHTML = ""
     descriptionContainer.innerHTML = ""
     main()
 })

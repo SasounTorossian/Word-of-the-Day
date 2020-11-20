@@ -1,6 +1,9 @@
 const descriptionContainer = document.querySelector(".description-container")
 
+// Render errors for user feedback
 const RenderError = (err) => {
+
+    // Object container all HTTP codes
     const statusCodes = { 
         '100': 'Continue',
         '101': 'Switching Protocols',
@@ -60,12 +63,11 @@ const RenderError = (err) => {
         '511': 'Network Authentication Required' 
     }
 
+    // Create error container, get error message, and append to description container
     const errorContainer = document.createElement("div")
     errorContainer.textContent = `Error code ${err}: ${statusCodes[err]}`
     errorContainer.classList.add("error-container")
     descriptionContainer.appendChild(errorContainer)
-
-    
 }
 
 export {

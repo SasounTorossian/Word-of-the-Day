@@ -1,5 +1,6 @@
 import {RenderWords} from "./render.js"
 import { RenderError } from "./renderError.js"
+import "./styles/style.scss"
 
 // Configuration object for Wordnik GET URLs
 const Wordnik = {

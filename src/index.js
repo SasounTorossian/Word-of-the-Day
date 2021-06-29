@@ -1,35 +1,25 @@
-import {RenderWords} from "./render.js"
+import { RenderWords } from "./render.js"
 import { RenderError } from "./renderError.js"
+import { config } from "./config/config.js"
 import "./styles/style.scss"
-
-// Configuration object for Wordnik GET URLs
-const Wordnik = {
-    apiKey: "qexbnl8z23x2ptwjlymloyj6fd4zkcy7ddb6a2yjbrdiyttwk",
-    hasDictionaryDef: "true",
-    limit: "200",
-    includeRelated: "false",
-    useCanonical: "false",
-    includeTags: "false",
-}
 
 // Using concatenation because tabbed string literals are formed with a newline. 
 // Gets a random word json
 let randomWordURL = 
     `http://api.wordnik.com/v4/words.json/randomWord?` +
-    `hasDictionaryDef=${Wordnik.hasDictionaryDef}&` +
-    `api_key=${Wordnik.apiKey}`
+    `hasDictionaryDef=${config.hasDictionaryDef}&` +
+    `api_key=${config.apiKey}`
 
 
 const getWordDefinitionURL = (word) => {
-    
     let wordDefinitionURL = 
         `http://api.wordnik.com:80/v4/word.json/` +
         `${word}/definitions?` +
-        `limit=${Wordnik.limit}&` +
-        `includeRelated=${Wordnik.includeRelated}&` +
-        `useCanonical=${Wordnik.useCanonical}&` +
-        `includeTags=${Wordnik.includeTags}&` +
-        `api_key=${Wordnik.apiKey}`
+        `limit=${config.limit}&` +
+        `includeRelated=${config.includeRelated}&` +
+        `useCanonical=${config.useCanonical}&` +
+        `includeTags=${config.includeTags}&` +
+        `api_key=${config.apiKey}`
 
     return wordDefinitionURL
 }
